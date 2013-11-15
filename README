@@ -2,7 +2,25 @@ ovs-gui
 ====================
   This is an user-friendly OpenvSwitch web GUI.
 
-  Just try it !!!
+  Try it !!!
+===================
+How to install
+1.Install Dependencies
+	First you need to install openvswitch1.10
+	Then:
+	apt-get install lighttpd
+	apt-get install python-dev
+	apt-get install python-pip
+	pip install web.py simplejson flup
+
+2.Configure lighttpd
+	cd owg-gui/config
+	cp 10-fastcgi.conf /etc/lighttpd/conf-available/10-fastcgi.conf
+	cp lighttpd.conf /etc/lighttpd/lighttpd.conf
+	cd /etc/lighttpd/conf-enabled/
+	ln -s ../conf-available/10-fastcgi.conf 10-fastcgi.conf
+	service lighttpd restart
+3.Open a web browser and type in IP (127.0.0.1 for localhost). 
 
 lemon
 BUPT
