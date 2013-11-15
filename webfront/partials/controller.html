@@ -1,0 +1,123 @@
+<div ng-controller="ControllerCtrl">
+    <ul>
+        <li ng-repeat="ctl in controllers">
+            <table border="1">
+                <tr>
+                    <th>Protocol</th>
+                    <td>
+                        <select ng-model="ctl.protocol" ng-options="p for p in protocols">
+                            <option value="">--protocols--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>IP Address</th>
+                    <td>
+                        <input type="text" ng-model="ctl.ip">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Port</th>
+                    <td>
+                        <input type="number" ng-model="ctl.port">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Connection Mode</th>
+                    <td>
+                        <select ng-model="ctl.connection_mode" ng-options="c for c in mode">
+                            <option value="">--connection mode--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Max Backoff</th>
+                    <td>
+                        <input type="number" ng-model="ctl.max_backoff" min="1000">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inactivity Probe</th>
+                    <td>
+                        <input type="number" ng-model="ctl.inactivity_probe">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Rate Limit</th>
+                    <td>
+                        <input type="number" ng-model="ctl.controller_rate_limit" min="100">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Burst Limit</th>
+                    <td>
+                        <input type="number" ng-model="ctl.controller_burst_limit" min="25">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Is Connected&#63;</th>
+                    <td> {{ctl.is_connected}} </td>
+                </tr>
+                <tr>
+                    <th>Enable Async Messages</th>
+                    <td>
+                        <select ng-model="ctl.enable_async_messages" ng-options="x.value as x.label for x in namedbool">
+                            <option value="">--async messages--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Role</th>
+                    <td> {{ctl.role}} </td>
+                </tr>
+                <tr>
+                    <th>State</th>
+                    <td> {{ctl.status.state}} </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button ng-click="update_ctrl(ctl)">Save Changes</button>
+                        <button ng-click="del_ctrl(ctl)">Delete</button>
+                        <button ng-click="goback()">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+    <hr>
+    <!--Add a new controller-->
+    <table border="1">
+        <tr>
+            <th>Protocol</th>
+            <td>
+                <select ng-model="new_ctrl.protocol" ng-options="p for p in protocols">
+                    <option value="">--protocols--</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>IP Address</th>
+            <td>
+                <input type="text" ng-model="new_ctrl.ip">
+            </td>
+        </tr>
+        <tr>
+            <th>Port</th>
+            <td>
+                <input type="number" ng-model="new_ctrl.port">
+            </td>
+        </tr>
+        <tr>
+            <th>Connection Mode</th>
+            <td>
+                <select ng-model="new_ctrl.connection_mode" ng-options="c for c in mode">
+                    <option value="">--connection mode--</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button ng-click="add_ctrl(new_ctrl)">Add</button>
+                <button ng-click="reset()">Discard</button>
+            </td>
+    </table>
+</div>

@@ -1,0 +1,104 @@
+<div ng-controller="FlowCtrl">
+  <ul>
+    <li ng-repeat="table in tables | orderBy:id | filter:none_empty">
+    <span>Table: {{table.id}}</span>
+    <table border="1">
+      <tr>
+        <th>Prioriry</th><th>Cookie</th><th>Match Fields</th><th>Actions</th><th>Duration</th><th>Idle Age</th><th>Hard Age</th>
+      </tr>
+      <tr ng-repeat="flow in table.flows | orderBy:prio">
+        <td>{{flow.priority}}</td>
+        <td>{{flow.cookie}}</td>
+        <td>{{flow.match_fields | fields}}</td>
+        <td><input type="text" ng-model="flow.actions"></td>
+        <td>{{flow.duration}}</td>
+        <td>{{flow.idle_age}}</td>
+        <td>{{flow.hard_age}}</td>
+        <td colspan="2">
+          [ <a href="" ng-click="update_flow(flow)">save</a>
+          | <a href="" ng-click="del_flow(flow)">delete</a> ]
+        </td>
+      </tr>
+    </table>
+    </li>
+  </ul>
+  <hr>
+  <table border="1">
+    <caption>New Flow</caption>
+    <tr>
+      <th>Priority</th><td><input type="number" ng-model="new_flow.priority"></td>
+      <th>Table</th><td><input type="text" ng-model="new_flow.table"></td>
+      <th>Cookie</th><td><input type="text" ng-model="new_flow.cookie"></td>
+    </tr>
+    <tr>
+        <th colspan="8">Match fields</th>
+    </tr>
+    <tr>
+        <th>Inport</th><td><input type="text" ng-model="new_flow.match_fields.in_port"></td>
+        <th>Eth dst</th><td><input type="text" ng-model="new_flow.match_fields.eth_dst"></td>
+        <th>Eth src</th><td><input type="text" ng-model="new_flow.match_fields.eth_src"></td>
+        <th>Eth type</th><td><input type="text" ng-model="new_flow.match_fields.eth_type"></td>
+    </tr>
+    <tr>
+        <th>Vlan vid</th><td><input type="text" ng-model="new_flow.match_fields.vlan_vid"></td>
+        <th>Vlan pcp</th><td><input type="text" ng-model="new_flow.match_fields.vlan_pcp"></td>
+        <th>IP ecn</th><td><input type="text" ng-model="new_flow.match_fields.ip_ecn"></td>
+        <th>IP dscp</th><td><input type="text" ng-model="new_flow.match_fields.ip_dscp"></td>
+    </tr>
+    <tr>
+        <th>IP proto</th><td><input type="text" ng-model="new_flow.match_fields.ip_proto"></td>
+        <th>IPv4 src</th><td><input type="text" ng-model="new_flow.match_fields.ipv4_src"></td>
+        <th>Ipv4 dst</th><td><input type="text" ng-model="new_flow.match_fields.ipv4_dst"></td>
+        <th>ARP op</th><td><input type="text" ng-model="new_flow.match_fields.arp_op"></td>
+    </tr>
+    <tr>
+        <th>TP src</th><td><input type="text" ng-model="new_flow.match_fields.tp_src"></td>
+        <th>TP dst</th><td><input type="text" ng-model="new_flow.match_fields.tp_dst"></td>
+    </tr>
+    <tr>
+        <th>ICMPv4 type</th><td><input type="text" ng-model="new_flow.match_fields.icmpv4_type"></td>
+        <th>ICMPv4 code</th><td><input type="text" ng-model="new_flow.match_fields.icmpv4_code"></td>
+        <th>ICMPv6 type</th><td><input type="text" ng-model="new_flow.match_fields.icmpv6_type"></td>
+        <th>ICMPv6 code</th><td><input type="text" ng-model="new_flow.match_fields.icmpv6_code"></td>
+    </tr>
+    <tr>
+        <th>ARP spa</th><td><input type="text" ng-model="new_flow.match_fields.arp_spa"></td>
+        <th>ARP tpa</th><td><input type="text" ng-model="new_flow.match_fields.arp_tpa"></td>
+        <th>ARP sha</th><td><input type="text" ng-model="new_flow.match_fields.arp_sha"></td>
+        <th>ARP tha</th><td><input type="text" ng-model="new_flow.match_fields.arp_tha"></td>
+    </tr>
+    <tr>
+        <th>IPv6 src</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_src"></td>
+        <th>IPv6 dst</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_dst"></td>
+        <th>IPv6 label</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_label"></td>
+    </tr>
+    <tr>
+        <th>IPv6 nd target</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_nd_target"></td>
+        <th>IPv6 nd sll</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_nd_sll"></td>
+        <th>IPv6 nd tll</th><td><input type="text" ng-model="new_flow.match_fields.ipv6_nd_tll"></td>
+        <th>IPv6 exthdr</th><td><input type="text" ng-model = "new_flow.match_fields.ipv6_exthdr"></td>
+    </tr>
+    <tr>
+        <th>MPLS label</th><td><input type="text" ng-model="new_flow.match_fields.mpls_label"></td>
+        <th>MPLS tc</th><td><input type="text" ng-model = "new_flow.match_fields.mpls_tc"></td>
+        <th>MPLS bos</th><td><input type="text" ng-model = "new_flow.match_fields.mpls_bos"></td>
+    </tr>
+    <tr>
+        <th>Pbb isid</th><td><input type="text" ng-model = "new_flow.match_fields.pbb_isid"></td>
+        <th>Pbb uca</th><td><input type="text" ng-model = "new_flow.match_fields.pbb_uca"></td>
+        <th>Tunnel id</th><td><input type="text" ng-model = "new_flow.match_fields.tunnel_id"></td>
+    </tr>
+    <tr>
+      <th colspan="8">Actions</th>
+    </tr>
+    <tr>
+        <td colspan="8"><input size="180" type="text" ng-model="new_flow.actions"></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+          [ <a href="" ng-click="add_flow(new_flow)">+</a>
+          | <a href="" ng-click="reset()">Clear</a> ]
+        </td>
+    </tr>
+  </table>
+</div>

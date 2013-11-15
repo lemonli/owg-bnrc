@@ -1,0 +1,132 @@
+<div ng-controller="PortsCtrl">
+  <ul>
+    <li ng-repeat="port in ports | orderBy:name">
+      <table border="1">
+        <caption>{{port.name}}</caption>
+        <tr>
+          <th>Name</th>
+          <td>{{port.name}}</td>
+        </tr>
+        <tr>
+          <th>VLAN Mode</th>
+          <td>
+            <select ng-model="port.vlan_config.vlan_mode"  ng-options="x for x in modes">
+              <option value="">--VLAN Mode--</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Tag</th>
+          <td>
+            <input type="number" ng-model="port.vlan_config.tag" min="0" max="4095">
+          </td>
+        </tr>
+        <tr>
+          <th>Trunks</th>
+          <td>
+            <input type="text" ng-model="port.vlan_config.trunks">
+          </td>
+        </tr>
+        <tr>
+          <th>MAC Address</th>
+          <td>{{port.mac}}</td>
+        </tr>
+        <tr>
+          <th>QoS</th>
+          <td>
+            <input type="text" ng-model="port.qos">
+          </td>
+        </tr>
+        <tr>
+          <th>OpenFlow Port</th>
+          <td>{{port.ofport}}</td>
+        </tr>
+        <tr>
+          <th colspan="2">State</th>
+        </tr>
+        <tr>
+          <th>Admin State</th>
+          <td>{{port.admin_state}}</td>
+        </tr>
+        <tr>
+          <th>Link State</th>
+          <td>{{port.link_state}}</td>
+        </tr>
+        <tr>
+          <th>Link Speed</th>
+          <td>
+            <input type="number" ng-model="port.options.link_speed">
+          </td>
+        </tr>
+        <tr>
+          <th>Duplex</th>
+          <td>{{port.duplex}}</td>
+        </tr>
+        <tr>
+          <th>MTU</th>
+          <td>{{port.mtu}}</td>
+        </tr>
+        <tr>
+          <th colspan="2"> Statistics </th>
+        </tr>
+        <tr>
+          <th>TX Bytes</th>
+          <td>{{port.counters.tx_bytes}}</td>
+        </tr>
+        <tr>
+          <th>TX Packets</th>
+          <td>{{port.counters.tx_packets}}</td>
+        </tr>
+        <tr>
+          <th>RX Bytes</th>
+          <td>{{port.counters.rx_bytes}}</td>
+        </tr>
+        <tr>
+          <th>RX Packets</th>
+          <td>{{port.counters.rx_packets}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button ng-click="update_port(port)">Save Changes</button>
+            <button ng-click="del_port(port)">Delete</button>
+            <button ng-click="goback()">Cancel</button>
+          </td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+  <!--New Port-->
+  <hr>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <td>
+        <input type="text" ng-model="new_port.name">
+      </td>
+    </tr>
+    <tr>
+      <th>VLAN Mode</th>
+      <td>
+        <select ng-model="new_port.vlan_config.vlan_mode"  ng-options="x for x in modes">
+          <option value="">--VLAN Mode--</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Tag</th>
+      <td>
+        <input type="number" ng-model="new_port.vlan_config.tag" min="0" max="4095">
+      </td>
+    </tr>
+    <tr>
+      <th>Trunks</th>
+      <td>
+        <input type="text" ng-model="new_port.vlan_config.trunks">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="add_port(new_port)">Add</button>
+        <button ng-click="reset()">Discard</button>
+  </table>
+</div>

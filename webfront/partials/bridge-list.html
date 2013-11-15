@@ -1,0 +1,35 @@
+<div>
+    <div>
+    Add Bridge: <input type="text" name="brname" ng-model="brname">
+    <input type="button" name="add_br" value="Add" ng-click="add_br(brname)">
+    </div>
+    <div>
+    <ul>
+        <li ng-repeat="br in bridges">
+            <a href="#/bridges/{{br.name}}">{{br.name}}</a>
+            <input type="button" name="del_br" value="Delete" ng-click="del_br(br.name)">
+            <!--Basic Info-->
+            <table border="1">
+                <tr>
+                    <th>Datapath ID</th>
+                    <th>Fail Mode</th>
+                    <th>Protocols</th>
+                    <!--<th>STP Enabled</th>-->
+                </tr>
+                <tr>
+                    <!--Datapath ID-->
+                    <td>{{br.datapath_id}}</td>
+
+                    <!--Fail Mode-->
+                    <td>{{br.fail_mode}}</td>
+
+                    <!--Flood VLANs-->
+                    <td ng-bind="br.protocols"></td>
+
+                    <!--STP Enable-->
+                    <!--<td>{{br.stp_config.stp_enable}}</td>-->
+                </tr>
+            </table>
+        </li>
+    </ul>
+</div>

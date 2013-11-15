@@ -1,0 +1,89 @@
+<div ng-controller="MirrorCtrl">
+  <ul>
+    <li ng-repeat="mirror in mirrors | orderBy:name">
+    <table border="1">
+      <tr><th>Name</th>
+        <td>{{mirror.name}}</td>
+      </tr>
+      <tr><th colspan="2">Ports</th></tr>
+      <tr><th>Select SRC Ports</th>
+        <td>
+          <input type="text" ng-model="mirror.select_src_port">
+        </td>
+      </tr>
+      <tr><th>Select DST Ports</th>
+        <td>
+          <input type="text" ng-model="mirror.select_dst_port">
+        </td>
+      </tr>
+      <tr><th>Output Port</th>
+        <td>
+          <input type="text" ng-model="mirror.output_port">
+        </td>
+      </tr>
+      <tr><th colspan="2">VLANs</th></tr>
+      <tr><th>Select VLANs</th>
+        <td>
+          <input type="text" ng-model="mirror.select_vlan">
+        </td>
+      </tr>
+      <tr><th>Output VLANs</th>
+        <td>
+          <input type="text" ng-model="mirror.output_vlan">
+        </td>
+      </tr>
+      <tr><th colspan="2">Counters</th></tr>
+      <tr><th>TX Packets</th><td>{{mirror.statistics.tx_packets}}</td></tr>
+      <tr><th>TX Bytes</th><td>{{mirror.statistics.tx_bytes}}</td></tr>
+      <tr>
+        <td colspan="2">
+          <button ng-click="update_mirror(mirror)">Save Changes</button>
+          <button ng-click="del_mirror(mirror)">Delete</button>
+          <button ng-click="goback()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+    </li>
+  </ul>
+  <hr>
+  <table border="1">
+    <tr><th>Name</th>
+      <td>
+        <input type="text" ng-model="new_mirror.name">
+      </td>
+    </tr>
+    <tr><th colspan="2">Ports</th></tr>
+    <tr><th>Select SRC Ports</th>
+      <td>
+        <input type="text" ng-model="new_mirror.select_src_port">
+      </td>
+    </tr>
+    <tr><th>Select DST Ports</th>
+      <td>
+        <input type="text" ng-model="new_mirror.select_dst_port">
+      </td>
+    </tr>
+    <tr><th>Output Port</th>
+      <td>
+        <input type="text" ng-model="new_mirror.output_port">
+      </td>
+    </tr>
+    <tr><th colspan="2">VLANs</th></tr>
+    <tr><th>Select VLANs</th>
+      <td>
+        <input type="text" ng-model="new_mirror.select_vlan">
+      </td>
+    </tr>
+    <tr><th>Output VLANs</th>
+      <td>
+        <input type="text" ng-model="new_mirror.output_vlan">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="add_mirror(new_mirror)">Add</button>
+        <button ng-click="reset()">Discard</button>
+      </td>
+    </tr>
+  </table>
+</div>

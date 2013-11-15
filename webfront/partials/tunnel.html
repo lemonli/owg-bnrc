@@ -1,0 +1,52 @@
+<div ng-controller="TunnelCtrl">
+  <ul>
+    <li ng-repeat="tul in tunnels | orderBy:name">
+    <table border="1">
+      <tr>
+        <td>Name</td>
+        <td>{{tul.name}}</td>
+      </tr>
+      <tr>
+        <td>Remote IP</td>
+        <td>
+          <input type="text" ng-model="tul.options.remote_ip">
+        </td>
+      </tr>
+      <tr>
+        <td>Local IP</td>
+        <td>
+          <input type="text" ng-model="tul.options.local_ip">
+        </td>
+      </tr>
+      <tr>
+        <td>Source MAC</td>
+        <td>
+          <input type="text" ng-model="tul.options.src_mac">
+        </td>
+      </tr>
+      <tr>
+        <td>Destination MAC</td>
+        <td>
+          <input type="text" ng-model="tul.options.dst_mac">
+        </td>
+      </tr>
+      <tr>
+        <td>VLAN</td>
+        <td>
+          <input type="number" ng-model="tul.options.vlan">
+        </td>
+      </tr>
+      <tr>
+        <td>Egress Port</td>
+        <td>
+          <input type="text" ng-model="tul.options.egress_port">
+        </td>
+      </tr>
+    </table>
+    </li>
+  </ul>
+  <!--New Tunnel-->
+  <hr>
+  <table border="2">
+  </table>
+</div>

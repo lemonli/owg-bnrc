@@ -1,0 +1,79 @@
+<div ng-controller="QoSCtrl">
+  <ul>
+    <li ng-repeat="qos in qoses">
+      <table border="1">
+        <tr><th>UUID</th>
+          <td>{{qos.uuid}}</td>
+        </tr>
+        <tr><th>Type</th>
+          <td>
+            <select ng-model="qos.type" ng-options="x for x in types"></select>
+          </td>
+        </tr>
+        <tr><th colspan="2">Queues</th></tr>
+        <tr><th>&#x23; Queues</th>
+          <td ng-init="cnt=qos.queues.length">
+            <input type="radio" ng-model="cnt" value="0">0
+            <input type="radio" ng-model="cnt" value="1">1
+            <input type="radio" ng-model="cnt" value="2">2
+            <input type="radio" ng-model="cnt" value="3">3
+            <input type="radio" ng-model="cnt" value="4">4
+          </td>
+        </tr>
+        <tr ng-repeat="n in [] | range:cnt ">
+          <th>UUID-{{$index}}</th>
+          <td>
+            <input type="text" ng-model="qos.queues[$index]" required>
+          </td>
+        </tr>
+        <tr><th>Max-Rate</th>
+          <td>
+            <input type="number" ng-model="qos.other_config['max-rate']">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button ng-click="update_qos(qos, cnt)">Save Changes</button>
+            <button ng-click="del_qos(qos)">Delete</button>
+            <button ng-click="goback()">Cancel</button>
+          </td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+  <hr>
+  <table border="1">
+    <tr><th>Type</th>
+      <td>
+        <select ng-model="new_qos.type" ng-options="x for x in types"></select>
+      </td>
+    </tr>
+    <tr><th colspan="2">Queues</th></tr>
+    <tr><th>&#x23; Queues</th>
+      <td>
+        <input type="radio" ng-model="new_cnt" value="0">0
+        <input type="radio" ng-model="new_cnt" value="1">1
+        <input type="radio" ng-model="new_cnt" value="2">2
+        <input type="radio" ng-model="new_cnt" value="3">3
+        <input type="radio" ng-model="new_cnt" value="4">4
+      </td>
+    </tr>
+    <tr ng-repeat="n in [] | range:new_cnt ">
+      <th>UUID-{{$index}}</th>
+      <td>
+        <input type="text" ng-model="new_qos.queues[$index]" required>
+      </td>
+    </tr>
+    <tr><th>Max-Rate</th>
+      <td>
+        <input type="number" ng-model="new_qos.other_config['max-rate']">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="add_qos(new_qos, new_cnt)">Add</button>
+        <button ng-click="reset()">Discard</button>
+      </td>
+    </tr>
+  </table>
+</div>

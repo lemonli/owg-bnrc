@@ -1,0 +1,77 @@
+<div ng-controller="QueueCtrl">
+  <ul>
+    <li ng-repeat="queue in queues">
+    <table border="1">
+      <tr><th>UUID</th>
+        <td>{{queue.uuid}}</td>
+      </tr>
+      <tr><th>DSCP</th>
+        <td>
+          <input type="number" ng-model="queue.dscp">
+        </td>
+      </tr>
+      <tr><th>Min-Rate</th>
+        <td>
+          <input type="number" ng-model="queue.other_config['min-rate']">
+        </td>
+      </tr>
+      <tr><th>Max-Rate</th>
+        <td>
+          <input type="number" ng-model="queue.other_config['max-rate']">
+        </td>
+      </tr>
+      <tr><th>Burst</th>
+        <td>
+          <input type="number" ng-model="queue.other_config['burst']">
+        </td>
+      </tr>
+      <tr><th>Priority</th>
+        <td>
+          <input type="number" ng-model="queue.other_config.priority">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button ng-click="update_queue(queue)">Save Changes</button>
+          <button ng-click="del_queue(queue)">Delete</button>
+          <button ng-click="goback()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+    </li>
+  </ul>
+  <hr>
+  <table border="1">
+    <tr><th>DSCP</th>
+      <td>
+        <input type="number" ng-model="new_queue.dscp">
+      </td>
+    </tr>
+    <tr><th>Min-Rate</th>
+      <td>
+        <input type="number" ng-model="new_queue.other_config['min-rate']">
+      </td>
+    </tr>
+    <tr><th>Max-Rate</th>
+      <td>
+        <input type="number" ng-model="new_queue.other_config['max-rate']">
+      </td>
+    </tr>
+    <tr><th>Burst</th>
+      <td>
+        <input type="number" ng-model="new_queue.other_config['burst']">
+      </td>
+    </tr>
+    <tr><th>Priority</th>
+      <td>
+        <input type="number" ng-model="new_queue.other_config.priority">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="add_queue(new_queue)">Add</button>
+        <button ng-click="reset()">Discard</button>
+      </td>
+    </tr>
+  </table>
+</div>

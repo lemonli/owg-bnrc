@@ -1,0 +1,94 @@
+<div ng-controller="sFlowCtrl">
+  <table border="1">
+    <tr>
+      <th>Polling</th>
+        <td>
+          <input type="number" ng-model="sflow.polling">
+        </td>
+    </tr>
+    <tr>
+      <th>Header</th>
+        <td>
+          <input type="number" ng-model="sflow.header">
+        </td>
+    </tr>
+    <tr>
+      <th>Agent</th>
+        <td>
+          <input type="text" ng-model="sflow.agent">
+        </td>
+    </tr>
+    <tr>
+      <th>Sampling</th>
+        <td>
+          <input type="number" ng-model="sflow.sampling">
+        </td>
+    </tr>
+    <tr><th colspan="2">Targets</th> </tr>
+    <tr><th>IP</th><th>Port</th></tr>
+    <tr ng-repeat="target in sflow.targets">
+      <td>
+        <input type="text" ng-model="target.ip">
+      </td>
+      <td>
+        <input type="number" ng-model="target.port">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="update_sflow(sflow)">Save Changes</button>
+        <button ng-click="del_sflow(sflow)">Delete</button>
+        <button ng-click="goback()">Cancel</button>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <table border="1">
+    <tr>
+      <th>Polling</th>
+        <td>
+          <input type="number" ng-model="new_sflow.polling">
+        </td>
+    </tr>
+    <tr>
+      <th>Header</th>
+        <td>
+          <input type="number" ng-model="new_sflow.header">
+        </td>
+    </tr>
+    <tr>
+      <th>Agent</th>
+        <td>
+          <input type="text" ng-model="new_sflow.agent">
+        </td>
+    </tr>
+    <tr>
+      <th>Sampling</th>
+        <td>
+          <input type="number" ng-model="new_sflow.sampling">
+        </td>
+    </tr>
+    <tr>
+      <th>Target Count</th>
+      <td>
+       <input type="number" ng-model="target_count">  
+      </td>
+    </tr>
+    <tr><th colspan="2">Targets</th></tr>
+    <tr><th>IP</th><th>Port</th></tr>
+    <tr ng-repeat="n in [] | range:target_count" ng-init="init_targets(target_count)">
+      <td>
+        <input type="text" ng-model="new_sflow.targets[n].ip">
+      </td>
+      <td>
+        <input type="number" ng-model="new_sflow.targets[n].port">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button ng-click="add_sflow(new_sflow)">Add</button>
+        <button ng-click="reset()">Discard</button>
+      </td>
+    </tr>
+  </table>
+</div>

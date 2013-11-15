@@ -1,0 +1,39 @@
+<div ng-controller="BasicInfoCtrl">
+  <table border="1">
+    <tr>
+      <th>Datapath ID</th>
+      <td>
+          <input type="text" ng-model="br.datapath_id">
+      </td>
+    </tr>
+    <tr>
+      <th>Fail Mode</th>
+      <td>
+        <select ng-model="br.fail_mode" ng-options="f for f in modes">
+            <option value="">--fail mode--</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Protocols</th>
+      <td>
+        <input type="text" ng-model="br.protocols" name="input">
+      </td>
+    </tr>
+    <!--
+       -<tr>
+       -  <th>STP Enabled</th>
+       -  <td>
+       -    <select ng-model="br.stp_config.stp_enable" ng-options="b for b in enable">
+       -    </select>
+       -  </td>
+       -</tr>
+       -->
+    <tr>
+      <td colspan="2">
+        <button ng-click="update_bridge(br)">Save Changes</button>
+        <button ng-click="goback()">Cancel</button>
+      </td>
+    </tr>
+  </table>
+</div>
